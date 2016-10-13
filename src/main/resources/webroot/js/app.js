@@ -24,7 +24,7 @@
     };
 
     tweetmap.service('DataStream', function () {
-        var socket = Rx.DOM.fromWebSocket('ws://' + window.location.host + '/ws', null);
+        var socket = Rx.DOM.fromWebSocket((document.location.protocol === 'https:' ? 'wss://' : 'ws://') + window.location.host + '/ws', null);
 
         return {
             stream: socket.map(function (msg) {
