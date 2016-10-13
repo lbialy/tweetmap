@@ -1,0 +1,6 @@
+<ng-map zoom="1" center="20, -160">
+    <marker ng-repeat="tweet in $ctrl.tweets track by tweet.id"
+            position="{{tweet.maybeGeoLocation.latitude}},{{tweet.maybeGeoLocation.longitude}}"
+            title="{{tweet.user.screenName}} tweeted:
+            {{tweet.text}}"></marker>
+</ng-map>

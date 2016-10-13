@@ -1,0 +1,3 @@
+.ui.feed > .event > .content .extra.text {
+    max-width: inherit !important;
+}

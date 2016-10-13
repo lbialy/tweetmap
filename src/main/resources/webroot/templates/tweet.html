@@ -1,0 +1,16 @@
+<div class="label">
+    <img ng-src="{{ $ctrl.tweet.user.profileImageUrl }}">
+</div>
+<div class="content">
+    <div class="summary">
+        <div>
+            {{ $ctrl.tweet.user.name }} (<a href="https://twitter.com/{{ $ctrl.tweet.user.screenName }}">@{{ $ctrl.tweet.user.screenName }}</a>) tweeted
+            <a href="https://twitter.com/{{ $ctrl.tweet.user.screenName }}/status/{{ $ctrl.tweet.id }}" class="ui floated right date">
+                {{$ctrl.tweet.createdAt | date : fullDate }}
+            </a>
+        </div>
+    </div>
+    <div class="extra text">
+        <p ng-bind-html="$ctrl.formattedText()"></p>
+    </div>
+</div>
