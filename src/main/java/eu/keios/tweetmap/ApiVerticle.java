@@ -87,7 +87,13 @@ public class ApiVerticle extends AbstractVerticle {
 
         monitor.start();
 
-        vertx.createHttpServer().requestHandler(router::accept).listen(8080);
+        Try<Integer> tryPort = Try.of(() -> Integer.valueOf(System.getProperty("http.port")));
+
+        Integer port = tryPort.getOrElse(8080);
+
+        System.out.println("Starting application on port " + port + "...");
+
+        vertx.createHttpServer().requestHandler(router::accept).listen(port);
     }
 
 }
