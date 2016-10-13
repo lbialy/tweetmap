@@ -62,6 +62,12 @@
                 .filter(keyword => keyword.length > 0)
                 .distinctUntilChanged()
                 .forEach(keyword => DataStream.socket.onNext(keywordsMessage(keyword)));
+
+            Rx.Observable.fromEvent($element.find('button'), 'click')
+                .forEach(() => {
+                    $element.find('input').val('');
+                    DataStream.socket.onNext(keywordsMessage(''));
+                });
         },
         templateUrl: 'templates/filterInput.html'
     });

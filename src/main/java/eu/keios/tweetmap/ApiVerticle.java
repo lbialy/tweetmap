@@ -64,7 +64,7 @@ public class ApiVerticle extends AbstractVerticle {
                     .subscribe(
                             observedKeywordsTry -> Match(observedKeywordsTry).of(
                                     Case(Success($()), observedKeywords -> {
-                                        monitor.updateKeywordsForConnection(socket, HashSet.ofAll(observedKeywords.keywords()));
+                                        monitor.updateKeywordsForConnection(socket, HashSet.ofAll(observedKeywords.keywords()).filter(s -> s.length() > 0));
                                         return Optional.empty();
                                     }),
                                     Case(Failure($()), x -> {

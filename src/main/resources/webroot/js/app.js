@@ -1,5 +1,3 @@
-// transpiled using: https://babeljs.io/repl/
-
 'use strict';
 
 (function (angular, Rx) {
@@ -14,13 +12,13 @@
 
     var maxTweets = 50;
 
-    var addTweet = function addTweet(array) {
+    var addTweet = function addTweet(tweetCollection) {
         return function (tweet) {
-            if (array.length >= maxTweets) {
-                array.pop();
-                array.unshift(tweet);
+            if (tweetCollection.length >= maxTweets) {
+                tweetCollection.pop();
+                tweetCollection.unshift(tweet);
             } else {
-                array.unshift(tweet);
+                tweetCollection.unshift(tweet);
             }
         };
     };
@@ -68,6 +66,11 @@
                 return keyword.length > 0;
             }).distinctUntilChanged().forEach(function (keyword) {
                 return DataStream.socket.onNext(keywordsMessage(keyword));
+            });
+
+            Rx.Observable.fromEvent($element.find('button'), 'click').forEach(function () {
+                $element.find('input').val('');
+                DataStream.socket.onNext(keywordsMessage(''));
             });
         },
         templateUrl: 'templates/filterInput.html'
