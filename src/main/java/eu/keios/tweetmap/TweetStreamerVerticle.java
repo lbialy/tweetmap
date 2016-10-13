@@ -52,7 +52,13 @@ public class TweetStreamerVerticle extends AbstractVerticle {
 
         } else {
             System.out.println("Tracking: " + String.join(", ", keywordsToTrack.keywords()));
-            twitterStream.filter(new FilterQuery(keywordsToTrack.keywords().toArray(new String[]{})));
+            vertx.executeBlocking(
+                    future -> {
+                        twitterStream.filter(new FilterQuery(keywordsToTrack.keywords().toArray(new String[]{})));
+                        future.complete(null);
+                    },
+                    res -> System.out.println("Stream filter updated.")
+            );
         }
     }
 
