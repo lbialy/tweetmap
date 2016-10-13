@@ -12,7 +12,7 @@ How to run:
 
 ```bash
 #!/bin/bash
-rm -fr target && mvn package && env $envvars java -jar target/tweetmap-1.0-SNAPSHOT-fat.jar \
+rm -fr target && mvn package && java -jar target/tweetmap-1.0-SNAPSHOT-fat.jar \
 -Dhttp.port=80 \
 -Dtwitter4j.debug=false \
 -Dtwitter4j.oauth.consumerKey=CONSUMER_KEY_GOES_HERE \

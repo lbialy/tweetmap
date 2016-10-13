@@ -2,3 +2,4 @@ target
 run.sh
 .idea/
 tweetmap.iml
+deploy.sh
